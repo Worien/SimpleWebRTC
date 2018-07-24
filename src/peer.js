@@ -45,7 +45,7 @@ function Peer(options) {
     });
     this.pc.on('answer', function (answer) {
         if (self.parent.config.nick) answer.nick = self.parent.config.nick;
-        console.log("receive anwer")
+        console.log("generate local anwer")
         self.send('answer', answer);
     });
     this.pc.on('addStream', this.handleRemoteStreamAdded.bind(this));
@@ -111,7 +111,7 @@ Peer.prototype.handleMessage = function (message) {
     var self = this;
 
     this.logger.log('getting', message.type, message);
-
+    console.log('handle message'  + message.type)
     if (message.prefix) this.browserPrefix = message.prefix;
 
     if (message.type === 'offer') {
@@ -128,7 +128,7 @@ Peer.prototype.handleMessage = function (message) {
             });
         });
     } else if (message.type === 'answer') {
-        console.log("receive answer peer id = " + this.id);
+        console.log('receive answer peer id = ' + this.id);
         if (!this.nick) this.nick = message.payload.nick;
         delete message.payload.nick;
         this.pc.handleAnswer(message.payload);

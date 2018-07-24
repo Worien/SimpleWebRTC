@@ -82,7 +82,7 @@ function SimpleWebRTC(opts) {
     connection.on('message', function (message) {
         var peers = self.webrtc.getPeers(message.from, message.roomType);
         var peer;
-
+        console.log('receive message type = ' + message.type + 'peers length = ' + peers.length)
         if (message.type === 'offer') {
             if (peers.length) {
                 peers.forEach(function (p) {
