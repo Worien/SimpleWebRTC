@@ -126,9 +126,11 @@ Peer.prototype.handleMessage = function (message) {
             });
         });
     } else if (message.type === 'answer') {
+        console.log("receive answer peer id = " + this.id);
         if (!this.nick) this.nick = message.payload.nick;
         delete message.payload.nick;
         this.pc.handleAnswer(message.payload);
+        console.log("handle answer peer id = " + this.id);
     } else if (message.type === 'candidate') {
         this.pc.processIce(message.payload);
     } else if (message.type === 'connectivityError') {

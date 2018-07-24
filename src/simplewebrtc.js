@@ -287,7 +287,7 @@ SimpleWebRTC.prototype.handlePeerStreamAdded = function (peer) {
     video.id = this.getDomId(peer);
 
     if (container) container.appendChild(video);
-
+    console.log('remote video stream added, peer = ' + peer.id);
     this.emit('videoAdded', video, peer);
 
     // send our mute status to new peer if we're muted
