@@ -105,6 +105,7 @@ function SimpleWebRTC(opts) {
         } else if (peers.length) {
             peers.forEach(function (peer) {
                 if (message.sid) {
+                    console.log('msg sid = '+ message.sid + ' peer sid = ' + peer.sid);
                     if (peer.sid === message.sid) {
                         peer.handleMessage(message);
                     }
