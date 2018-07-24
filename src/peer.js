@@ -45,6 +45,7 @@ function Peer(options) {
     });
     this.pc.on('answer', function (answer) {
         if (self.parent.config.nick) answer.nick = self.parent.config.nick;
+        console.log("receive anwer")
         self.send('answer', answer);
     });
     this.pc.on('addStream', this.handleRemoteStreamAdded.bind(this));
@@ -118,6 +119,7 @@ Peer.prototype.handleMessage = function (message) {
         delete message.payload.nick;
         this.pc.handleOffer(message.payload, function (err) {
             if (err) {
+                console.log('error to handle offer ' + err)
                 return;
             }
             // auto-accept
@@ -242,6 +244,7 @@ Peer.prototype.end = function () {
 
 Peer.prototype.handleRemoteStreamAdded = function (event) {
     var self = this;
+    console.log('handle remote stream peer id = ' + this.id)
     if (this.stream) {
         this.logger.warn('Already have a remote stream');
     } else {

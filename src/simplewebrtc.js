@@ -394,6 +394,7 @@ SimpleWebRTC.prototype.getLocalVideoContainer = function () {
         return el;
     } else if (el) {
         var video = document.createElement('video');
+        console.log("create new video container")
         video.oncontextmenu = function () { return false; };
         el.appendChild(video);
         return video;
